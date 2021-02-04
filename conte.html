@@ -40,6 +40,10 @@
             <div id="conte">
                 <h1 class="text-center" id="title">{{titre}}</h1>
                 <br>
+                <label>Recherche
+                    <input v-model="recherche">
+                </label>
+
                 <table style="width:100% ">
                     <tr>
                         <div class="col-xl-1">
@@ -53,12 +57,25 @@
                         </div>
                     </tr>
 
-                    <tr v-for="conte in contes">
-                        <td>{{ conte.nom }}</td>
-                        <td v-if="!conte.affichage" v-bind:id="conte.nom" >{{ conte.description.substr(0,50) }}...</td>
-                        <td v-else v-bind:id="conte.nom">{{ conte.description }}</td>
-                        <td><input  type="submit" class="btn btn-primary" v-on:click="fullDesc(conte.id)" value="Résumer Complet"></input></td>
-                    </tr>
+                    <!-- Les groupes de transitions sont utile pour faire des animations d'entrée et de sortie.-->
+                    <transition-group
+                            name="staggered-fade"
+                            tag="ul"
+                            v-bind:css="false"
+                            v-on:before-enter="beforeEnter"
+                            v-on:enter="enter"
+                            v-on:leave="leave"
+                    >
+                        <tr v-for="conte in computedList">
+                            <td>{{ conte.nom }}</td>
+                            <td v-if="!conte.affichage" v-bind:id="conte.nom">{{ conte.description.substr(0, 50) }}...
+                            </td>
+                            <td v-else v-bind:id="conte.nom">{{ conte.description }}</td>
+                            <td><input type="submit" class="btn btn-primary" v-on:click="fullDesc(conte.id)"
+                                       value="Résumer Complet"></input></td>
+                        </tr>
+                    </transition-group>
+
                 </table>
 
 

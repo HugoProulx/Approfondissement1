@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="narbarVue">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -29,20 +31,49 @@
 </head>
 
 <body>
-<div class="row no-gutters bg-light" id="watch-example">
-        <div class="offset-xl-1 col-xl-10 bg-white">
-            <div class="col-xl-6" >
-                <p>
-                    Ask a yes/no question:
-                    <input v-model="question">
-                </p>
-                <p>{{ answer }}</p>
+
+<div class="row no-gutters bg-light" id="divertissement">
+    <div class="offset-xl-1 col-xl-10 bg-white text-center ">
+        <div class="offset-xl-1 col-xl-10  spacer-200">
+            <div class="row">
+
+                <div class="col-xl-6">
+                    <p>
+                        Ask a yes/no question:
+                        <input v-model="question">
+                    </p>
+                    <p>{{ answer }}</p>
+                </div>
+                <div class="col-xl-6">
+                    <p>{{messageRV}}</p>
+                    <label>
+                        <input v-model="messageRV">
+                    </label><br>
+                    <button type="button" class="btn btn-danger" v-on:click="retournerMessage">Reverse Message</button>
+                </div>
             </div>
-            <div class="col-xl-6">
-            <p>
-                {{currentRoute.substring(currentRoute.length- 10, currentRoute.length)}}
-            </p>
-        </div>
+            <hr/>
+            <div class="row">
+                <div class="col-xl-6">
+                    <button class="btn btn-danger" @click="ajout">
+                        Ajouter
+                    </button>
+                    <br>
+                    <br>
+                    <input v-model="nouveanNom">
+                </div>
+                <div class="col-xl-6">
+                    <button @click="shuffle" class="btn btn-danger">
+                        Shuffle
+                    </button>
+                    <transition-group name="flip-list">
+                        <li v-for="item in items" v-bind:key="item">
+                            {{ item.nom }}
+                        </li>
+                    </transition-group>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -52,10 +83,9 @@
 <footer>
     <div id="footer">
         <div class="row no-gutters bg-light">
-            <div class="offset-xl-1 col-xl-10 bg-white spacerUp">
-                <div class="offset-xl-1 col-xl-10">
-                    <hr/>
-                    <div class="row">
+            <div class="offset-xl-1 col-xl-10 bg-white ">
+                <div class="offset-xl-1 col-xl-10 ">
+                    <div class="row ">
                         <div class="col-xl-4">
                             <h3>Auteur:</h3>
                             <hr/>
@@ -94,6 +124,8 @@
 <script src="script/footer.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
-<script src="script/divertissement.js"></script>
+<script src="script/api.js"></script>
 <script src="script/navbar.js"></script>
+<script src="script/divertissement.js"></script>
+
 </html>

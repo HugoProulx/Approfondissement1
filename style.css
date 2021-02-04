@@ -313,3 +313,13 @@ tr:nth-child(even) {
 #description{
 	width: 75%;
 }
+
+.spacer-200{
+	padding-bottom: 200px;
+	padding-top: 200px;
+}
+.flip-list-move {
+	transition: transform 1s;
+}
+
+

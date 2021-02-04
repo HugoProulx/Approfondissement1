@@ -1,7 +1,16 @@
-
-var watchExampleVM = new Vue({
-    el: '#watch-example',
+var divertissement = new Vue({
+    el: '#divertissement',
     data: {
+        items: [
+            {nom: 'Hugo'},
+            {nom: 'Willème'},
+            {nom: 'Williame'},
+            {nom: 'Bastien'},
+            {nom: 'Alex'},
+            {nom: 'Christophe'},
+        ],
+        nouveanNom: '',
+        messageRV: 'Hello Vue!',
         currentRoute: window.location.pathname,
         question: '',
         answer: 'I cannot give you an answer until you ask a question!'
@@ -38,6 +47,22 @@ var watchExampleVM = new Vue({
                 .catch(function (error) {
                     vm.answer = 'Error! Could not reach the API. ' + error
                 })
-        }
+        },
+        retournerMessage: function () {
+            this.messageRV = this.messageRV.split('').reverse().join('')
+        },
+
+        shuffle: function () {
+            this.items = _.shuffle(this.items)
+        },
+        ajout: function (){
+            if (this.nouveanNom !== ''){
+                //Ici il est important de placer les {} autrement, le push va rester vide.
+                this.items.push({nom:this.nouveanNom})
+
+            }
+        },
+
     }
 })
+
