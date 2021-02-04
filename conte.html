@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="./image/icon.jpg.png">
-    <title>Divertissement</title>
+    <title>Comtes Mythiques</title>
     <script src="https://unpkg.com/vue"></script>
 
     <link rel="stylesheet" href="./style.css">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Sweet alert-->
+    <script src="sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -27,28 +33,45 @@
     </nav>
 
 </head>
-
 <body>
-<div class="row no-gutters bg-light" id="watch-example">
-        <div class="offset-xl-1 col-xl-10 bg-white">
-            <div class="col-xl-6" >
-                <p>
-                    Ask a yes/no question:
-                    <input v-model="question">
-                </p>
-                <p>{{ answer }}</p>
+<div class="row no-gutters bg-light">
+    <div class="offset-xl-1 col-xl-10 bg-white spacerUp">
+        <div class="offset-xl-1 col-xl-10">
+            <div id="conte">
+                <h1 class="text-center" id="title">{{titre}}</h1>
+                <br>
+                <table style="width:100% ">
+                    <tr>
+                        <div class="col-xl-1">
+                            <th style="height: 30px">Nom:</th>
+                        </div>
+                        <div class="col-xl-10">
+                            <th id="description">Description:</th>
+                        </div>
+                        <div class="col-xl-10">
+                            <th>Info:</th>
+                        </div>
+                    </tr>
+
+                    <tr v-for="conte in contes">
+                        <td>{{ conte.nom }}</td>
+                        <td v-if="!conte.affichage" v-bind:id="conte.nom" >{{ conte.description.substr(0,50) }}...</td>
+                        <td v-else v-bind:id="conte.nom">{{ conte.description }}</td>
+                        <td><input  type="submit" class="btn btn-primary" v-on:click="fullDesc(conte.id)" value="Résumer Complet"></input></td>
+                    </tr>
+                </table>
+
+
             </div>
-            <div class="col-xl-6">
-            <p>
-                {{currentRoute.substring(currentRoute.length- 10, currentRoute.length)}}
-            </p>
-        </div>
         </div>
     </div>
+</div>
 </div>
 
 
 </body>
+
+
 <footer>
     <div id="footer">
         <div class="row no-gutters bg-light">
@@ -91,9 +114,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script src="script/conte.js"></script>
 <script src="script/footer.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
-<script src="script/divertissement.js"></script>
 <script src="script/navbar.js"></script>
+
 </html>
