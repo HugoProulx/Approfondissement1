@@ -1,4 +1,0 @@
-https://vuejs.org/v2/guide/transitions.html
-https://vuejs.org/v2/guide/list.html
-https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-list-move-transitions?file=/style.css:0-86
-https://getbootstrap.com/docs/4.0/components/buttons/
