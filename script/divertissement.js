@@ -35,17 +35,17 @@ var divertissement = new Vue({
     methods: {
         getAnswer: function () {
             if (this.question.indexOf('?') === -1) {
-                this.answer = 'Questions usually contain a question mark. ;-)'
+                this.answer = 'Une question a besoin d\'un point d\'interrogation.'
                 return
             }
-            this.answer = 'Thinking...'
+            this.answer = 'Traitement en cour...'
             var vm = this
             axios.get('https://yesno.wtf/api')
                 .then(function (response) {
                     vm.answer = _.capitalize(response.data.answer)
                 })
                 .catch(function (error) {
-                    vm.answer = 'Error! Could not reach the API. ' + error
+                    vm.answer = 'Erreur! L\'API n\'est pas accessible. ' + error
                 })
         },
         retournerMessage: function () {
